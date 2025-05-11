@@ -1,0 +1,162 @@
+/* Define the light and dark theme colors as CSS variables */
+:root {
+  --background-light: #F3E4C6;
+  --header-light: #FFF6E5;
+  --button-light: #FF7F50;
+  --light-button: #FFBAA1;
+  --main-text-light: #1A1A1A;
+  --secondary-text-light: #777777;
+  --textbox-light: #FFFFFF;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-dark: #1E1E1E;
+    --header-dark: #2A2A2A;
+    --button-dark: #FF7F50;
+    --light-button-dark: #FFBAA1;
+    --main-text-dark: #FFFFFF;
+    --secondary-text-dark: #AAAAAA;
+    --textbox-dark: #2F2F2F;
+  }
+}
+
+/* Global styles */
+body {
+  background-color: var(--background-light);
+  color: var(--main-text-light);
+  font-family: "Arial Rounded MT Bold", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+body.dark-mode {
+  background-color: var(--background-dark);
+  color: var(--main-text-dark);
+}
+
+header {
+  position: fixed;
+  top: -3.125em;
+  left: 0;
+  width: 98%;
+  height: 6.25em;
+  background-color: var(--header-light);
+  box-shadow: 0em 0.25em 0.78125em rgba(0,0,0,0.25);
+  padding: 1.25em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: top 0.3s ease;
+  z-index: 10;
+  border-bottom-left-radius: 1.25em;
+  border-bottom-right-radius: 1.25em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode header {
+  background-color: var(--header-dark);
+}
+
+header.show-header{
+  top:0;
+}
+
+button {
+  background-color: var(--button-light);
+  color: var(--textbox-light);
+}
+
+button:hover {
+  background-color: var(--light-button);
+}
+
+button.dark-mode {
+  background-color: var(--button-dark);
+  color: var(--textbox-dark);
+}
+
+button.dark-mode:hover {
+  background-color: var(--light-button-dark);
+}
+
+/* Toggle for dark mode */
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 3.75em;
+  height: 2.125em;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-light);
+  transition: 0.4s;
+  border-radius: 2.125em;
+}
+
+.slider:before {
+  position: absolute;
+  content: "☀️";
+  height: 1.625em;
+  width: 1.625em;
+  border-radius: 50%;
+  left: 0.25em;
+  bottom: 0.25em;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--background-dark);
+}
+
+input:checked + .slider:before {
+  content: "🌙";
+  transform: translateX(1.625em);
+
+}
+
+
+/* Header Content */
+
+.header-title
+{
+  color: var(--button-light);
+  font-size: 4em;
+}
+
+
+/* Word entry */
+
+main{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+/* Add other components as needed */
+
+
