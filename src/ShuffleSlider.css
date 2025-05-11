@@ -7,7 +7,7 @@
     color: var(--main-text-light);
     background-color: var(--background-light);
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
-    top: 30em;
+    top: 39em;
     border-radius: 1.25em;
     transition: background-color 0.3s ease, color 0.3s ease;
     padding-top: 1em;
