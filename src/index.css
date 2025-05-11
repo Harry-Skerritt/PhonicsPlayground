@@ -40,7 +40,7 @@ header {
   top: -3.125em;
   left: 0;
   width: 98%;
-  height: 6.25em;
+  height: 4.25em;
   background-color: var(--header-light);
   box-shadow: 0em 0.25em 0.78125em rgba(0,0,0,0.25);
   padding: 1.25em;
@@ -99,7 +99,7 @@ button.dark-mode:hover {
   height: 0;
 }
 
-.slider {
+.toggle-slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -111,7 +111,7 @@ button.dark-mode:hover {
   border-radius: 2.125em;
 }
 
-.slider:before {
+.toggle-slider:before {
   position: absolute;
   content: "☀️";
   height: 1.625em;
@@ -126,11 +126,11 @@ button.dark-mode:hover {
   transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked + .toggle-slider {
   background-color: var(--background-dark);
 }
 
-input:checked + .slider:before {
+input:checked + .toggle-slider:before {
   content: "🌙";
   transform: translateX(1.625em);
 
@@ -142,7 +142,7 @@ input:checked + .slider:before {
 .header-title
 {
   color: var(--button-light);
-  font-size: 4em;
+  font-size: 3em;
 }
 
 

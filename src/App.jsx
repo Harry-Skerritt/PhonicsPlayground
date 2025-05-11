@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './index.css'; // Ensure you import the CSS styles
 import WordEntry from "./WordEntry.jsx"
 import ShuffleSlider from "./ShuffleSlider.jsx";
+import PresentButton from "./PresentButton.jsx";
 
 const App = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -43,7 +44,7 @@ const App = () => {
                             checked={isDarkMode}
                             onChange={toggleDarkMode}
                         />
-                        <span className="slider round"></span>
+                        <span className="toggle-slider round"></span>
                     </label>
                 </div>
 
@@ -52,6 +53,9 @@ const App = () => {
             <main>
                 <WordEntry />
                 <ShuffleSlider />
+
+                <PresentButton />
+
             </main>
         </div>
     );

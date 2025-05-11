@@ -1,0 +1,63 @@
+.present-button {
+    background-color: var(--button-light);
+    color: var(--main-text-dark);
+    width: 16.5em;
+    height: 1.5em;
+    font-size: 3.5em;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0.25em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    position: fixed; /* Fix the button to the screen */
+    bottom: 20px;    /* Distance from the bottom of the screen */
+    left: 50%;       /* Center horizontally */
+    transform: translateX(-50%); /* Adjust position to exactly center */
+}
+
+.present-button:hover {
+    background-color: var(--light-button-dark);
+}
+
+.presentation-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    font-size: 3em;
+    font-weight: bold;
+    color: #333;
+    z-index: 1000;
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden;
+}
+
+.completion-message {
+    font-size: 1.5em;
+    margin-top: 20px;
+    color: #888;
+}
+
+.next-set-button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.25em;
+    padding: 1em;
+    border: none;
+    border-radius: 1.25em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.next-set-button:hover {
+    background-color: #45a049;
+}

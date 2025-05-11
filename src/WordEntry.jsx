@@ -19,7 +19,7 @@ function WordEntry()
                 </div>
 
             </div>
-            <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder={"Type words here..."}></textarea>
+            <textarea id={"word-textarea"} value={text} onChange={(e) => setText(e.target.value)} placeholder={"Type words here..."}></textarea>
         </div>
     );
 }

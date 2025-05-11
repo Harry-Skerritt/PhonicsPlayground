@@ -17,6 +17,7 @@ function ShuffleSlider() {
                     value={value}
                     onChange={(e) => setValue(parseInt(e.target.value))}
                     className="slider"
+                    id={"shuffle-slider"}
                 />
             </div>
         </div>
