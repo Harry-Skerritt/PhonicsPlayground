@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./PresentationPage.css"
 import "../index.css"
@@ -6,12 +6,21 @@ import "../index.css"
 function PresentationPage() {
     const navigate = useNavigate();
 
+    const nextSetButtonRef = useRef(null);
+    const nextWordButtonRef = useRef(null);
+    const prevWordButtonRef = useRef(null);
+
     const [isShuffling, setIsShuffling] = useState(false);
     const [shuffledResults, setShuffledResults] = useState([]);
     const [useShuffleScreen, setUseShuffleScreen] = useState(false);
 
     const [currentSetIndex, setCurrentSetIndex] = useState(0);
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+    useEffect(() => {
+        window.focus();
+        document.body.focus();
+    }, []);
 
     useEffect(() => {
         const storedResults = localStorage.getItem('shuffledResults');
@@ -93,12 +102,26 @@ function PresentationPage() {
 
     useEffect(() => {
         const handleKeyPress = (e) => {
-            if (e.key === 'ArrowRight') handleWordNavigation('next');
-            if (e.key === 'ArrowLeft') handleWordNavigation('prev');
+            if (e.key === 'ArrowRight' && nextWordButtonRef.current)
+            {
+                nextWordButtonRef.current.click();
+                //handleWordNavigation('next');
+            }
+
+            if (e.key === 'ArrowLeft' && prevWordButtonRef.current)
+            {
+                prevWordButtonRef.current.click();
+                //handleWordNavigation('prev');
+            }
+
+            if (e.key === 'Enter' && nextSetButtonRef.current)
+            {
+                nextSetButtonRef.current.click();
+            }
         };
 
-        window.addEventListener('keydown', handleKeyPress);
-        return () => window.removeEventListener('keydown', handleKeyPress);
+        document.addEventListener('keydown', handleKeyPress);
+        return () => document.removeEventListener('keydown', handleKeyPress);
     }, [currentSetIndex, currentWordIndex]);
 
 
@@ -130,12 +153,23 @@ function PresentationPage() {
                             </div>
 
                             {currentWordIndex === shuffledResults[currentSetIndex].length - 1 && (
-                                <button className={"next-set-button"} onClick={handleNextSet}>Next Set</button>
+                                <button
+                                    className={"next-set-button"}
+                                    onClick={handleNextSet}
+                                    ref={nextSetButtonRef}
+                                >Next Set</button>
                             )}
 
                             <div className={"button-container"}>
-                                <button onClick={() => handleWordNavigation('prev')}>{"←"}</button>
-                                <button onClick={() => handleWordNavigation('next')}>{"→"}</button>
+                                <button
+                                    onClick={() => handleWordNavigation('prev')}
+                                    ref={prevWordButtonRef}
+                                >{"←"}</button>
+
+                                <button
+                                    onClick={() => handleWordNavigation('next')}
+                                    ref={nextWordButtonRef}
+                                >{"→"}</button>
                             </div>
                         </div>
                     </div>
