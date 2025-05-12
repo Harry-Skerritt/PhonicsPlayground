@@ -97,7 +97,16 @@
     height: 100px;           /* Set height if you want vertical centering */
 }
 
+body.dark-mode .shuffleText {
+    color: var(--main-text-dark);
+}
 
+body.dark-mode .loader {
+    background: radial-gradient(closest-side at calc(100%/6) 50%, #fff 90%, #0000) 0/75% 100%;
+}
+
+
+/*
 @media (prefers-color-scheme: dark) {
     .shuffleText {
         color: var(--main-text-dark);
@@ -107,3 +116,5 @@
         background: radial-gradient(closest-side at calc(100%/6) 50%, #fff 90%, #0000) 0/75% 100%;
     }
 }
+
+ */

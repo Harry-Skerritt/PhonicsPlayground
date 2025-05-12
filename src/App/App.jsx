@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import '../index.css';
 import WordEntry from "./Components/WordEntry.jsx"
 import ShuffleSlider from "./Components/ShuffleSlider/ShuffleSlider.jsx";
@@ -114,6 +114,9 @@ const App = () => {
 
                 <h1 className={"header-title"}>PHONICS PLAYGROUND</h1>
 
+                <Link to={"/readme"} className={"how-to-link"}>How To Use</Link>
+
+                {/*
                 <div className={"dark-mode-toggle"}>
                     <label className="switch">
                         <input
@@ -124,6 +127,7 @@ const App = () => {
                         <span className="toggle-slider round"></span>
                     </label>
                 </div>
+                */}
 
             </header>
 
@@ -139,7 +143,6 @@ const App = () => {
                 <div className={"buttons"}>
                     <div className={"top-buttons"}>
                         <ResetButton disabled={!isButtonEnabled} onClicked={handleReset} />
-                        <PreviewButton disabled={!isButtonEnabled} />
                     </div>
 
                     <PresentButton disabled={!isButtonEnabled} onClicked={handleSubmit} />
