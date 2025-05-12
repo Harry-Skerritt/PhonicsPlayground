@@ -9,39 +9,50 @@ import PreviewButton from "./Components/Buttons/OtherButtons/PreviewButton.jsx";
 
 const App = () => {
     const navigate = useNavigate();
-    const [isDarkMode, setIsDarkMode] = useState(false);
-
-    // Check if dark mode preference is already set in localStorage
-    useEffect(() => {
-        const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-        setIsDarkMode(savedDarkMode);
-        if (savedDarkMode) {
-            document.body.classList.add('dark-mode');
-        }
-
-        // Add the 'show-header' class after a small delay to trigger the slide-down effect
-        setTimeout(() => {
-            document.querySelector('header').classList.add('show-header');
-        }, 100); // Delay of 100ms for smoother animation
-    }, []);
-
-    const toggleDarkMode = () => {
-        setIsDarkMode((prev) => {
-            const newDarkMode = !prev;
-            document.body.classList.toggle('dark-mode', newDarkMode);
-            // Save preference to localStorage
-            localStorage.setItem('darkMode', newDarkMode);
-            return newDarkMode;
-        });
-    };
-
 
     const [text, setText] = useState('');
     const [shuffleAmount, setShuffleAmount] = useState(1);
     const [useShuffleScreen, setUseShuffleScreen] = useState(false);
 
-    const wordArray = text.trim().split('\n').filter(word => word);
+    const [loadedFromLS, setLoadedFromLS] = useState(false);
+
+    let wordArray = text.trim().split('\n').filter(word => word);
     const isButtonEnabled = wordArray.length > 0;
+
+    useEffect(() => {
+        try {
+            const mainWordArray = localStorage.getItem('mainWordArray');
+            const mainShuffleAmount = localStorage.getItem('mainShuffleAmount');
+            const mainShuffleScreen = localStorage.getItem('mainShuffleScreen');
+
+            if(!mainWordArray || !mainShuffleAmount || !mainShuffleScreen)
+            {
+                setLoadedFromLS(false);
+                return;
+            }
+
+            const parsedWords = JSON.parse(mainWordArray);
+            const parsedShuffleAmount = JSON.parse(mainShuffleAmount);
+            const parsedShuffleScreen = JSON.parse(mainShuffleScreen);
+
+            if(!Array.isArray(parsedWords)) throw new Error("mainWordArray must be an array");
+
+            setText(parsedWords.join('\n'));
+            setShuffleAmount(Number(parsedShuffleAmount));
+            setUseShuffleScreen(Boolean(parsedShuffleScreen));
+            setLoadedFromLS(true);
+            console.log("Loaded from LS");
+
+        } catch(e)
+        {
+            console.error("Error loading from LS", e);
+            alert("Something went wrong loading saved data. Resetting.");
+            localStorage.removeItem('mainWordArray');
+            localStorage.removeItem('mainShuffleAmount');
+            localStorage.removeItem('mainShuffleScreen');
+            window.location.reload();
+        }
+    }, []);
 
     const handleFullScreen = () =>
     {
@@ -60,6 +71,12 @@ const App = () => {
         console.log('Shuffle Amount:', shuffleAmount);
         console.log('Words:', wordArray);
         console.log('Use Shuffle Screen:', useShuffleScreen);
+
+        localStorage.setItem("mainWordArray", JSON.stringify(wordArray));
+        localStorage.setItem("mainShuffleAmount", JSON.stringify(shuffleAmount));
+        localStorage.setItem("mainShuffleScreen", JSON.stringify(useShuffleScreen));
+
+        console.log("Saved to local storage");
 
         handleFullScreen();
         const uniqueShuffled = new Set();
@@ -101,6 +118,22 @@ const App = () => {
     }
 
     const handleReset = () => {
+        if(loadedFromLS) {
+            const clear = window.confirm("Would you like to clear saved data?");
+
+            if (clear) {
+                localStorage.removeItem('mainWordArray');
+                localStorage.removeItem('mainShuffleAmount');
+                localStorage.removeItem('mainShuffleScreen');
+                localStorage.removeItem('shuffledResults');
+                localStorage.removeItem('useShuffleScreen');
+                localStorage.removeItem('currentSetIndex');
+                console.log("Saved data cleared");
+                window.location.reload();
+                return;
+            }
+        }
+
         console.log("Reset!");
         setText('');
         setShuffleAmount(1);

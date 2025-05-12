@@ -105,13 +105,11 @@ function PresentationPage() {
             if (e.key === 'ArrowRight' && nextWordButtonRef.current)
             {
                 nextWordButtonRef.current.click();
-                //handleWordNavigation('next');
             }
 
             if (e.key === 'ArrowLeft' && prevWordButtonRef.current)
             {
                 prevWordButtonRef.current.click();
-                //handleWordNavigation('prev');
             }
 
             if (e.key === 'Enter' && nextSetButtonRef.current)
@@ -138,6 +136,7 @@ function PresentationPage() {
         document.addEventListener('fullscreenchange', handleFullScreenChange);
         return () => document.removeEventListener('fullscreenchange', handleFullScreenChange);
     }, []);
+
 
     return (
         <div>
