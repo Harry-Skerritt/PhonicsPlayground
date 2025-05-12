@@ -8,11 +8,11 @@ function ShuffleCards() {
 
     useEffect(() => {
         // After 2 seconds, navigate back to /presentation
-        const timer = setTimeout(() => {
-            navigate('/presentation');
-        }, 2000); // 2 seconds delay
+       // const timer = setTimeout(() => {
+       //     navigate('/presentation');
+       // }, 2000); // 2 seconds delay
 
-        return () => clearTimeout(timer); // Cleanup the timeout on component unmount
+        //return () => clearTimeout(timer); // Cleanup the timeout on component unmount
     }, [navigate]);
 
     const cardStyles = Array.from({ length: 5 }, (_, index) => ({
