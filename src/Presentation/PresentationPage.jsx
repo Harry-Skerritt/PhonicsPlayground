@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./PresentationPage.css"
+import "../index.css"
 
 function PresentationPage() {
     const navigate = useNavigate();
@@ -13,16 +14,36 @@ function PresentationPage() {
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
     useEffect(() => {
-        const storedRestults = localStorage.getItem('shuffledResults');
-        if(storedRestults)
+        const storedResults = localStorage.getItem('shuffledResults');
+        if(storedResults)
         {
-            setShuffledResults(JSON.parse(storedRestults));
+            setShuffledResults(JSON.parse(storedResults));
+        }
+        else
+        {
+            alert("Something went wrong!");
+            navigate('/');
         }
 
+        console.log(storedResults);
+
         const storedShuffleScreen = localStorage.getItem('useShuffleScreen');
-        if(storedShuffleScreen)
+        if(storedShuffleScreen != null)
         {
-            setUseShuffleScreen(JSON.parse(storedShuffleScreen));
+            setUseShuffleScreen(Boolean(storedShuffleScreen));
+        }
+        else
+        {
+            setUseShuffleScreen(false);
+        }
+
+        const storedSetIndex = localStorage.getItem('currentSetIndex');
+        if(storedSetIndex != null)
+        {
+            setCurrentSetIndex(Number(storedSetIndex));
+        }
+        else{
+            setCurrentSetIndex(0);
         }
     }, []);
 
@@ -31,15 +52,34 @@ function PresentationPage() {
         if (isShuffling && useShuffleScreen) {
             // Navigate to /presentation/shuffling
             navigate('/presentation/shuffling');
+            setIsShuffling(false);
         }
     }, [isShuffling, useShuffleScreen, navigate]);
 
     const handleNextSet = () => {
         if (currentSetIndex < shuffledResults.length - 1) {
+            const nextSetIndex = currentSetIndex + 1;
+            localStorage.setItem('currentSetIndex', JSON.stringify(nextSetIndex));
+
+            setIsShuffling(true);
             setCurrentSetIndex(prevIndex => prevIndex + 1);
             setCurrentWordIndex(0);
         } else {
-            alert("Done! Press ESC to exit.");
+            localStorage.removeItem('currentSetIndex');
+            if(window.confirm("All sets done! Press OK to continue"))
+            {
+                console.log("Confirmed Done");
+                navigate('/');
+                document.exitFullscreen();
+            }
+            else
+            {
+                console.log("Confirmed Cancel");
+                navigate('/');
+                document.exitFullscreen();
+                localStorage.removeItem('currentSetIndex');
+
+            }
         }
     };
 
@@ -51,15 +91,30 @@ function PresentationPage() {
         }
     };
 
-    const handleKeyPress = (e) => {
-        if (e.key === 'ArrowRight') handleWordNavigation('next');
-        if (e.key === 'ArrowLeft') handleWordNavigation('prev');
-    };
-
     useEffect(() => {
+        const handleKeyPress = (e) => {
+            if (e.key === 'ArrowRight') handleWordNavigation('next');
+            if (e.key === 'ArrowLeft') handleWordNavigation('prev');
+        };
+
         window.addEventListener('keydown', handleKeyPress);
         return () => window.removeEventListener('keydown', handleKeyPress);
     }, [currentSetIndex, currentWordIndex]);
+
+
+
+    useEffect(() => {
+        const handleFullScreenChange = () => {
+            if(!document.fullscreenElement)
+            {
+                console.log("Exited full screen");
+                navigate('/');
+            }
+        }
+
+        document.addEventListener('fullscreenchange', handleFullScreenChange);
+        return () => document.removeEventListener('fullscreenchange', handleFullScreenChange);
+    }, []);
 
     return (
         <div>
@@ -68,16 +123,21 @@ function PresentationPage() {
                     <div>
                         <h1 className={"displayed-word"}>{shuffledResults[currentSetIndex][currentWordIndex]}</h1>
 
-                        <div className={"counter-container"}>
-                            <h2>Set {currentSetIndex + 1} / {shuffledResults.length}</h2>
-                            <h2>Word: {currentWordIndex + 1} / {shuffledResults[currentSetIndex].length}</h2>
-                        </div>
-                        <button onClick={() => handleWordNavigation('prev')}>{"<"}</button>
-                        <button onClick={() => handleWordNavigation('next')}>{">"}</button>
+                        <div className={"stats-container"}>
+                            <div className={"counter-container"}>
+                                <h2>Set {currentSetIndex + 1} / {shuffledResults.length}</h2>
+                                <h2>Word: {currentWordIndex + 1} / {shuffledResults[currentSetIndex].length}</h2>
+                            </div>
 
-                        {currentWordIndex === shuffledResults[currentSetIndex].length - 1 && (
-                            <button onClick={handleNextSet}>Next Set ></button>
-                        )}
+                            {currentWordIndex === shuffledResults[currentSetIndex].length - 1 && (
+                                <button className={"next-set-button"} onClick={handleNextSet}>Next Set</button>
+                            )}
+
+                            <div className={"button-container"}>
+                                <button onClick={() => handleWordNavigation('prev')}>{"←"}</button>
+                                <button onClick={() => handleWordNavigation('next')}>{"→"}</button>
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>

@@ -1,10 +1,83 @@
-@font-face {
-    font-family: 'Sassoon Infant';
-}
 .displayed-word
 {
     width: 100%;
     font-family: "Sassoon Infant";
     text-align: center;
     font-size: 15em;
+}
+
+.counter-container
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+}
+
+.counter-container h2
+{
+    font-size: 1em;
+}
+
+.button-container
+{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.button-container button
+{
+    width: 2em;
+    height: 2em;
+    font-size: 2em;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    color: var(--main-text-light);
+}
+
+body.dark-mode .button-container button
+{
+    color: var(--main-text-dark);
+}
+
+.button-container button:hover
+{
+    color: var(--button-light);
+}
+
+body.dark-mode .button-container button:hover
+{
+    color: var(--button-light);
+}
+
+.stats-container
+{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 98%;
+    height: 4em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2em;
+    z-index: 1000;
+}
+
+.next-set-button
+{
+    border: none;
+    height: 80%;
+    width: 10%;
+    border-radius: 0.8em;
+    font-size: 1em;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.next-set-button:hover
+{
+    opacity: 0.7;
 }

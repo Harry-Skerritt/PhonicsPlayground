@@ -94,7 +94,9 @@ const App = () => {
         console.log('Shuffled 2D Array: ', shuffledResults);
         navigate('/presentation', { state: { useShuffleScreen, shuffledResults } });
         localStorage.setItem('shuffledResults', JSON.stringify(shuffledResults));
-        localStorage.setItems('useShuffleScreen', JSON.stringify(useShuffleScreen));
+        localStorage.setItem('useShuffleScreen', JSON.stringify(useShuffleScreen));
+        localStorage.removeItem('currentSetIndex');
+
 
     }
 
