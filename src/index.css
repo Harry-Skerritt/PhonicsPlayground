@@ -13,8 +13,8 @@
   :root {
     --background-dark: #1E1E1E;
     --header-dark: #2A2A2A;
-    --button-dark: #FF7F50;
-    --light-button-dark: #FFBAA1;
+    --button-dark: #862e0e;
+    --light-button-dark: #ac654c;
     --main-text-dark: #FFFFFF;
     --secondary-text-dark: #AAAAAA;
     --textbox-dark: #2F2F2F;
@@ -47,11 +47,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: top 0.3s ease;
   z-index: 10;
   border-bottom-left-radius: 1.25em;
   border-bottom-right-radius: 1.25em;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, top 0.3s ease;
 }
 
 body.dark-mode header {
@@ -154,9 +153,27 @@ main{
   justify-content: center;
 }
 
-
+.enabled-button
+{
+  pointer-events: none;
+  opacity: 0.4;
+}
 
 
 /* Add other components as needed */
+.buttons
+{
+  width: 45%;
+  margin: 0 auto;
+  margin-top: 45em;
+}
+
+.top-buttons
+{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
 
 

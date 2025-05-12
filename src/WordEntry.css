@@ -4,18 +4,11 @@
     left: 50%;
     transform: translateX(-50%);
     width: 57em;
-    height: 26em;
-    color: var(--main-text-light);
-    background-color: var(--background-light);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
-    top: 10em;
-    border-radius: 1.25em;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    padding-top: 1em;
+    height: 22em;
+    margin-top: 7em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1em;
 }
 
 .word-entry-content h1
@@ -28,21 +21,22 @@
     padding: 0em;
 }
 
-.word-entry-content h2
-{
+.word-entry-content .word-count {
     margin: 0em;
-    margin-top: 0.1em;
-    font-size: 1.4375em;
-    font-weight: normal;
-    color: var(--secondary-text-light);
+    margin-top: 1em;
     padding: 0em;
+    font-size: 1.5em;
+    color: var(--secondary-text-light);
 }
 
 .word-entry-content .wec-text-container {
     width: 90%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .word-entry-content textarea
@@ -64,42 +58,14 @@
 
 }
 
-
-body.dark-mode .word-entry-content
-{
-    background-color: var(--header-dark);
-    color: var(--main-text-dark);
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.25);
-
-}
-
 body.dark-mode .word-entry-content h1{
     color: var(--main-text-dark);
 }
 
-body.dark-mode .word-entry-content h2
-{
-    color: var(--secondary-text-dark);
-}
-
-body.dark-mode .word-entry-content textarea
-{
+body.dark-mode .word-entry-content textarea {
     background-color: var(--textbox-dark);
     color: var(--main-text-dark);
     border-color: #4e4e4e;
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.25);
-
 }
 
-.word-entry-content .subtitle-row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5em;
-    padding: 0 0.5em;
-}
-
-.word-entry-content .word-count {
-    font-size: 1em;
-    color: var(--secondary-text-light);
-}

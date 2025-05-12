@@ -1,9 +1,9 @@
-.present-button {
+.reset-button {
     background-color: var(--button-light);
     color: var(--main-text-dark);
-    width: 100%;
-    height: 1.5em;
-    font-size: 3.5em;
+    width: 9em;
+    height: 1.2em;
+    font-size: 2.5em;
     padding: 0;
     margin: 0;
     border: none;
@@ -12,22 +12,21 @@
     transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
-.present-button:disabled
+.reset-button:disabled
 {
     cursor: not-allowed;
     opacity: 0.4;
 }
 
-.present-button:hover {
+.reset-button:hover {
     background-color: var(--light-button-dark);
 }
 
-body.dark-mode .present-button{
+
+body.dark-mode .reset-button{
     background-color: var(--button-dark);
 }
 
-body.dark-mode .present-button:hover{
+body.dark-mode .reset-button:hover{
     opacity: 0.5;
 }
-
-
