@@ -1,7 +1,7 @@
 /* Define the light and dark theme colors as CSS variables */
 :root {
-  --background-light: #F3E4C6;
-  --header-light: #FFF6E5;
+  --background-light: #FAF9F6;
+  --header-light: #f1f1f1;
   --button-light: #FF7F50;
   --light-button: #FFBAA1;
   --main-text-light: #1A1A1A;

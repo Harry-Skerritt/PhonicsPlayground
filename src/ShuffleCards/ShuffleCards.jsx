@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from '../ShuffleCards/ShuffleCards.module.css';
+import "../index.css"
 import {useNavigate} from "react-router-dom";
 
 function ShuffleCards() {
