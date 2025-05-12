@@ -1,12 +1,19 @@
-# React + Vite
+# Phonics Playground
+![Phonics Playground Icon](./public/icon.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+**Phonics Playground** is a Vite and React based web-app which allows for the presentation of words to aid in learning phonics.
 
-Currently, two official plugins are available:
+## How To Use
+The site allows you to enter as many words as you'd like into the text box, the words should be separated by a new line
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can also choose how many times it should shuffle the words and display them within the presentation
 
-## Expanding the ESLint configuration
+The *PRESENT* button will start a power-point like presentation which allows you to move through the sets of words at your own pace
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The *PREVIEW* button allows you to see the sets of words before presenting
+
+The *RESET* button will clear all entered data
+
+The presentation can be played through using the **Left Arrow** and **Right Arrow**
+
