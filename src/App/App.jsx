@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import './index.css'; // Ensure you import the CSS styles
-import WordEntry from "./WordEntry.jsx"
-import ShuffleSlider from "./ShuffleSlider.jsx";
-import PresentButton from "./PresentButton.jsx";
-import ResetButton from "./ResetButton.jsx";
-import PreviewButton from "./PreviewButton.jsx";
+import { useNavigate } from "react-router-dom";
+import '../index.css';
+import WordEntry from "./Components/WordEntry.jsx"
+import ShuffleSlider from "./Components/ShuffleSlider/ShuffleSlider.jsx";
+import PresentButton from "./Components/Buttons/PresentButton/PresentButton.jsx";
+import ResetButton from "./Components/Buttons/OtherButtons/ResetButton.jsx";
+import PreviewButton from "./Components/Buttons/OtherButtons/PreviewButton.jsx";
 
 const App = () => {
+    const navigate = useNavigate();
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     // Check if dark mode preference is already set in localStorage
@@ -60,7 +62,6 @@ const App = () => {
         console.log('Use Shuffle Screen:', useShuffleScreen);
 
         handleFullScreen();
-
         const uniqueShuffled = new Set();
         const shuffledResults = [];
 
@@ -91,6 +92,8 @@ const App = () => {
         }
 
         console.log('Shuffled 2D Array: ', shuffledResults);
+        navigate('/presentation', { state: { useShuffleScreen, shuffledResults } });
+        localStorage.setItem('shuffledResults', JSON.stringify(shuffledResults));
 
     }
 

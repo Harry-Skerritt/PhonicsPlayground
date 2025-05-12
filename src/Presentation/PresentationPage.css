@@ -1,0 +1,37 @@
+.card-container {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    margin: 100px auto;
+    perspective: 1000px;
+}
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: 2px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    animation: shuffle 2s ease-in-out infinite;
+}
+
+/* Shuffle animation */
+@keyframes shuffle {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(40px, -20px) rotate(5deg);
+    }
+    50% {
+        transform: translate(-40px, 20px) rotate(-5deg);
+    }
+    75% {
+        transform: translate(30px, -10px) rotate(4deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
