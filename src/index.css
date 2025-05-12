@@ -14,18 +14,13 @@
   --main-text-light: #1A1A1A;
   --secondary-text-light: #777777;
   --textbox-light: #FFFFFF;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-dark: #1E1E1E;
-    --header-dark: #2A2A2A;
-    --button-dark: #862e0e;
-    --light-button-dark: #ac654c;
-    --main-text-dark: #FFFFFF;
-    --secondary-text-dark: #AAAAAA;
-    --textbox-dark: #2F2F2F;
-  }
+  --background-dark: #1E1E1E;
+  --header-dark: #2A2A2A;
+  --button-dark: #862e0e;
+  --light-button-dark: #ac654c;
+  --main-text-dark: #FFFFFF;
+  --secondary-text-dark: #AAAAAA;
+  --textbox-dark: #2F2F2F;
 }
 
 /* Global styles */
