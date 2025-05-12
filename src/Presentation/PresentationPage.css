@@ -1,7 +1,7 @@
 .displayed-word
 {
     width: 100%;
-    font-family: "Sassoon Infant";
+    font-family: 'CustomFont', "Comic Sans MS", serif;
     text-align: center;
     font-size: 15em;
 }
