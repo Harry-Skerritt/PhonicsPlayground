@@ -6,6 +6,10 @@
 
 **Phonics Playground** is a Vite and React based web-app which allows for the presentation of words to aid in learning phonics.
 
+## Try it out below!
+[![Phonics Playground Link](https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white)](https://harry-skerritt.github.io/PhonicsPlayground/)
+
+
 ### Tested on:
 ![Firefox](https://img.shields.io/badge/Firefox-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white)
 ![Safari](https://img.shields.io/badge/Safari-000000?style=for-the-badge&logo=Safari&logoColor=white)
