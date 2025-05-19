@@ -1,5 +1,5 @@
 # Phonics Playground
-![GitHub package.json version](https://img.shields.io/github/package-json/v/Harry-Skerritt/PhonicsPlayground?style=flat&color=%236cba81)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/Harry-Skerritt/PhonicsPlayground/v2-dev?color=%236cba81)
 ![GitHub License](https://img.shields.io/github/license/Harry-Skerritt/PhonicsPlayground?color=red)
 
 ![Phonics Playground Icon](./public/icon.png)
