@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&family=Poppins:wght@400;600;800&display=swap');
+
+:root {
+    --orange: #fd9110;
+    --pink: #FF008B;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+.landing-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-image:
+        /* Layer 1: Radial gradient with opacity */
+            radial-gradient(circle at 40% 20%, var(--orange), transparent 100%),
+                /* Layer 2: Another radial gradient with different position and color */
+            radial-gradient(circle at 60% 80%, var(--pink), transparent 100%),
+                /* Layer 3: A subtle linear gradient for overall tone */
+            linear-gradient(to bottom, var(--orange), var(--pink));
+    background-size: 400% 400%; /* Make background larger for animation */
+    animation: gradientMove 10s ease infinite; /* Apply animation */
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.landing-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0%;
+    text-align: center;
+    flex: 1;
+}
+
+.landing-title-main {
+    font-size: 5em;
+    color: white;
+    margin-bottom: 0.5em;
+    font-family: 'Leckerli One', cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.landing-subtitle {
+    font-size: 1.8em;
+    color: white;
+    margin-bottom: 2em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.landing-get-started-button {
+    background-color: white;
+    color: #f4845f;
+    padding: 0.75em 2.5em;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 2em; /* Add margin below the button */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.landing-get-started-button:hover {
+    background-color: #f4845f;
+    color: white;
+}
+
+.landing-cta {
+    text-align: center;
+    padding: 0em 0;
+    background-color: #f0f0f0;
+}
+
+.landing-cta-title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 1em;
+    font-family: 'Leckerli One', sans-serif;
+    font-weight: 600;
+}
+
+.landing-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+    margin-bottom: 2em;
+}
+
+.landing-login-button {
+    background-color: #f3f3f3;
+    color: #f4845f;
+    padding: 0.75em 3em;
+    font-size: 1.8em;
+    border: 3px solid #f4845f;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.landing-login-button:hover {
+    background-color: #f4845f;
+    color: #f3f3f3;
+}
+
+.landing-signup-button {
+    background-color: #f3f3f3;
+    color: #ff6b81;
+    padding: 0.75em 3em;
+    font-size: 1.8em;
+    border: 3px solid #ff6b81;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.landing-signup-button:hover {
+    background-color: #ff6b81;
+    color: #f3f3f3;
+}
+
+.landing-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    background-color: #f0f0f0;
+    color: #666;
+    font-size: 0.9em;
+    margin-top: auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.landing-copyright {
+    margin-right: 1em;
+}
+
+.landing-footer-links {
+    display: flex;
+    align-items: center;
+}
+
+.landing-footer-link {
+    color: #666;
+    text-decoration: none;
+    margin: 0 0.5em;
+}
+
+.landing-footer-link:hover {
+    text-decoration: underline;
+    color: #f4845f;
+}
+
+.landing-footer-separator {
+    margin: 0 0.5em;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .landing-title-main {
+        font-size: 3em;
+    }
+
+    .landing-subtitle {
+        font-size: 1.2em;
+    }
+
+    .landing-get-started-button,
+    .landing-login-button,
+    .landing-signup-button {
+        font-size: 1.2em;
+        padding: 0.75em 2em;
+    }
+
+    .landing-cta-buttons {
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .landing-background {
+        height: 100%;
+    }
+}

@@ -1,0 +1,660 @@
+import React, { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import {
+    BookOpen,
+    BookCopy,
+    Book,
+    Speaker,
+    Gamepad2,
+    Users,
+    Sparkles,
+    Heart,
+    Star,
+    Presentation,
+    Mic,
+    Trophy,
+    Briefcase,
+    Moon,
+    SunMedium,
+    ArrowRight,
+    LogIn,
+    Lock,
+    Mail,
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+// Animation variants
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            delayChildren: 0.3,
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { y: 20, opacity: 0, scale: 0.95 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        transition: {
+            type: 'spring',
+            stiffness: 120,
+            damping: 20,
+        },
+    },
+};
+
+// Feature data
+const features = [
+    {
+        title: 'Word Learning Presentations',
+        description: 'Immersive presentations to introduce new words.',
+        icon: Presentation,
+        imageUrl: 'https://placehold.co/1200x600/EEE/31343C', // Replace with actual image URL
+    },
+    {
+        title: 'Pronunciation Guides',
+        description: 'Crystal-clear audio guides for perfect pronunciation.',
+        icon: Mic,
+        imageUrl: 'https://placehold.co/1200x600/EEE/31343C', // Replace with actual image URL
+    },
+    {
+        title: 'Interactive Phonics Games',
+        description: 'Delightful games that make learning an adventure.',
+        icon: Gamepad2,
+        imageUrl: 'https://placehold.co/1200x600/EEE/31343C', // Replace with actual image URL
+    },
+    {
+        title: 'Teacher Resources',
+        description: 'Comprehensive tools and materials for educators.',
+        icon: Briefcase,
+        imageUrl: 'https://placehold.co/1200x600/EEE/31343C', // Replace with actual image URL
+    },
+];
+
+// Highlight data
+const highlights = [
+    {
+        title: 'Interactive Lessons',
+        description: 'Engaging, step-by-step phonics lessons with multimedia elements.',
+        icon: BookOpen,
+    },
+    {
+        title: 'Extensive Library',
+        description: 'A vast collection of books and interactive stories for all reading levels.',
+        icon: Book,
+    },
+    {
+        title: 'Progress Tracking',
+        description: 'Detailed reports and analytics to monitor and celebrate learning progress.',
+        icon: BookCopy,
+    },
+    {
+        title: 'Multi-User Support',
+        description: 'Create individual profiles for multiple children with personalized learning paths.',
+        icon: Users,
+    },
+];
+
+const PhonicsPlaygroundPage = () => {
+    // State for dark mode
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [showLoginPage, setShowLoginPage] = useState(false); // State to toggle login page
+
+    // Function to toggle dark mode
+    const toggleDarkMode = () => {
+        setIsDarkMode((prev) => !prev);
+    };
+
+    // Function to toggle login page
+    const handleLoginClick = () => {
+        setShowLoginPage(true);
+    };
+
+    const handleBackToMain = () => {
+        setShowLoginPage(false);
+    };
+
+    // Apply dark mode class to the body
+    useEffect(() => {
+        if (isDarkMode) {
+            document.body.classList.add('dark');
+        } else {
+            document.body.classList.remove('dark');
+        }
+    }, [isDarkMode]);
+
+    // Color palette selection
+    const palette = 'modern';
+
+    const getPalette = () => {
+        if (isDarkMode) {
+            return {
+                bgFrom: 'from-gray-950',
+                bgTo: 'to-black',
+                headerBg: 'bg-gray-900/98',
+                headerText: 'text-white',
+                headerButtonBg: 'bg-gray-800/90',
+                headerButtonText: 'text-white',
+                featureIcon: 'text-purple-400',
+                title: 'text-gray-100',
+                description: 'text-gray-300',
+                footerText: 'text-gray-400',
+                footerLink: 'hover:text-purple-300',
+                accentColor: 'text-purple-400',
+                sectionBg: 'bg-gray-900/98',
+                cardBg: 'bg-gray-800/95',
+                shadow: 'shadow-2xl',
+                button:
+                    'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600',
+                proButton:
+                    'bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600',
+                inputBg: 'bg-gray-800/90',
+                inputText: 'text-white',
+                inputBorder: 'border-gray-700',
+                label: 'text-gray-300',
+            };
+        }
+        switch (palette) {
+            case 'cheerful':
+                return {
+                    bgFrom: 'from-pink-400',
+                    bgTo: 'to-pink-600',
+                    headerBg: 'bg-white/95',
+                    headerText: 'text-pink-600',
+                    headerButtonBg: 'bg-white/80',
+                    headerButtonText: 'text-pink-600',
+                    featureIcon: 'text-pink-500',
+                    title: 'text-gray-800',
+                    description: 'text-gray-600',
+                    footerText: 'text-gray-500',
+                    footerLink: 'hover:text-pink-500',
+                    accentColor: 'text-pink-500',
+                    sectionBg: 'bg-white/95',
+                    cardBg: 'bg-white/90',
+                    shadow: 'shadow-lg',
+                    button:
+                        'bg-gradient-to-r from-pink-500 to-orange-500 text-white hover:from-pink-600 hover:to-orange-600',
+                    proButton:
+                        'bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600',
+                    inputBg: 'bg-white/90',
+                    inputText: 'text-gray-800',
+                    inputBorder: 'border-gray-300',
+                    label: 'text-gray-600',
+                };
+            case 'calm':
+                return {
+                    bgFrom: 'from-blue-100',
+                    bgTo: 'to-green-100',
+                    headerBg: 'bg-white/95',
+                    headerText: 'text-blue-600',
+                    headerButtonBg: 'bg-white/80',
+                    headerButtonText: 'text-blue-600',
+                    featureIcon: 'text-blue-500',
+                    title: 'text-gray-800',
+                    description: 'text-gray-600',
+                    footerText: 'text-gray-500',
+                    footerLink: 'hover:text-blue-500',
+                    accentColor: 'text-blue-500',
+                    sectionBg: 'bg-white/95',
+                    cardBg: 'bg-white/90',
+                    shadow: 'shadow-md',
+                    button:
+                        'bg-gradient-to-r from-blue-500 to-green-500 text-white hover:from-blue-600 hover:to-green-600',
+                    proButton:
+                        'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600',
+                    inputBg: 'bg-white/90',
+                    inputText: 'text-gray-800',
+                    inputBorder: 'border-gray-300',
+                    label: 'text-gray-600',
+                };
+            default:
+                return {
+                    bgFrom: 'from-purple-500',  // More Purple
+                    bgTo: 'to-pink-500',    // More Pink
+                    headerBg: 'bg-white/95',
+                    headerText: 'text-purple-700',
+                    headerButtonBg: 'bg-white/80',
+                    headerButtonText: 'text-purple-700',
+                    featureIcon: 'text-purple-500',
+                    title: 'text-gray-800',
+                    description: 'text-gray-600',
+                    footerText: 'text-gray-500',
+                    footerLink: 'hover:text-purple-500',
+                    accentColor: 'text-purple-500',
+                    sectionBg: 'bg-white/95',
+                    cardBg: 'bg-white/90',
+                    shadow: 'shadow-lg',
+                    button:
+                        'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600',
+                    proButton:
+                        'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700',
+                    inputBg: 'bg-white/90',
+                    inputText: 'text-gray-800',
+                    inputBorder: 'border-gray-300',
+                    label: 'text-gray-600',
+                };
+        }
+    };
+
+    const colors = getPalette();
+
+    // State for email input
+    const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [loginEmail, setLoginEmail] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
+    const [loginEmailError, setLoginEmailError] = useState('');
+    const [loginPasswordError, setLoginPasswordError] = useState('');
+
+
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setEmail(value);
+        // Basic email validation
+        if (value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+            setEmailError('Invalid email address');
+        } else {
+            setEmailError('');
+        }
+    };
+
+    const handleGetStarted = () => {
+        if (!email) {
+            setEmailError('Please enter your email address');
+            return;
+        }
+        if (emailError) {
+            return;
+        }
+        // Handle sign-up logic here
+        alert(`Signing up with email: ${email}`);
+    };
+
+    const handleLogin = () => {
+        let hasErrors = false;
+
+        if (!loginEmail) {
+            setLoginEmailError('Please enter your email address');
+            hasErrors = true;
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(loginEmail)) {
+            setLoginEmailError('Invalid email address');
+            hasErrors = true;
+        } else {
+            setLoginEmailError('');
+        }
+
+        if (!loginPassword) {
+            setLoginPasswordError('Please enter your password');
+            hasErrors = true;
+        } else {
+            setLoginPasswordError('');
+        }
+
+        if (!hasErrors) {
+            // Handle login logic here
+            alert(`Logging in with email: ${loginEmail}, password: ${loginPassword}`);
+            // In a real app, you'd make an API call to authenticate the user.
+            setShowLoginPage(false); // Go back to the main page after successful login
+        }
+    };
+
+
+    return (
+        <div
+            className={cn(
+                "min-h-screen flex flex-col transition-colors duration-500 font-roboto",
+                isDarkMode ? "dark" : "",
+                `bg-gradient-to-br ${colors.bgFrom} ${colors.bgTo} text-gray-900 dark:text-gray-100`
+            )}
+        >
+            {/* Header */}
+            <header
+                className={cn(
+                    `py-6 px-4 sm:px-6 lg:px-8 transition-colors duration-300`,
+                    `${colors.headerBg} backdrop-blur-md border-b border-gray-200 dark:border-gray-800 z-10 relative`
+                )}
+            >
+                <div className="flex items-center justify-between">
+                    <h1
+                        className={cn(
+                            `text-2xl sm:text-3xl font-bold ${colors.headerText} flex items-center gap-2`
+                        )}
+                    >
+                        <Sparkles className="w-6 h-6" />
+                        Phonics Playground
+                    </h1>
+                    <div className="flex items-center gap-4">
+                        <Button
+                            variant="outline"
+                            className={cn(
+                                `${colors.headerButtonBg} hover:bg-white ${colors.headerButtonText}
+                         border-gray-300 dark:border-gray-700
+                         dark:bg-gray-900/80 dark:hover:bg-gray-900  transition-colors duration-200`,
+                                "shadow-md hover:shadow-lg rounded-xl",
+                                isDarkMode
+                                    ? "dark:hover:bg-gray-700 dark:text-white dark:border-gray-700"
+                                    : ""
+                            )}
+                            onClick={toggleDarkMode}
+                        >
+                            {isDarkMode ? (
+                                <SunMedium className="w-5 h-5" />
+                            ) : (
+                                <Moon className="w-5 h-5" />
+                            )}
+                        </Button>
+                        <Button
+                            variant="outline"
+                            className={cn(
+                                `${colors.headerButtonBg} hover:bg-white ${colors.headerButtonText}
+                         border-gray-300 dark:border-gray-700
+                         dark:bg-gray-900/80 dark:hover:bg-gray-900  transition-colors duration-200`,
+                                "shadow-md hover:shadow-lg rounded-xl",
+                                isDarkMode
+                                    ? "dark:hover:bg-gray-700 dark:text-white dark:border-gray-700"
+                                    : ""
+                            )}
+                            onClick={handleLoginClick} // Show login page
+                        >
+                            <LogIn className="w-5 h-5" />
+                            Log In
+                        </Button>
+                    </div>
+                </div>
+            </header>
+
+            {/* Main Content */}
+            <main className="py-12 px-4 sm:px-6 lg:px-8 flex-grow relative z-10">
+                {showLoginPage ? (
+                    // Login Page Content
+                    <div className="max-w-md mx-auto">
+                        <h2 className={cn(
+                            `text-3xl sm:text-4xl font-semibold ${colors.title}  tracking-tight mb-8 text-center flex items-center justify-center gap-3`
+                        )}>
+                            <LogIn className="w-8 h-8" />
+                            Log In to Phonics Playground
+                        </h2>
+                        <div className={cn(
+                            `${colors.cardBg} rounded-xl p-6 ${colors.shadow} border border-gray-200 dark:border-gray-700`
+                        )}>
+                            <div className="mb-4">
+                                <label
+                                    htmlFor="login-email"
+                                    className={cn(
+                                        "block text-sm font-medium mb-1",
+                                        colors.label
+                                    )}
+                                >
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    id="login-email"
+                                    value={loginEmail}
+                                    onChange={(e) => {
+                                        setLoginEmail(e.target.value);
+                                        if (!e.target.value || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e.target.value)) {
+                                            setLoginEmailError('Invalid email address');
+                                        } else {
+                                            setLoginEmailError('');
+                                        }
+                                    }}
+                                    className={cn(
+                                        "w-full px-4 py-2 rounded-xl text-lg",
+                                        colors.inputBg,
+                                        colors.inputText,
+                                        colors.inputBorder,
+                                        "focus:outline-none focus:ring-2 focus:ring-opacity-50",
+                                        isDarkMode ? "focus:ring-purple-500" : "focus:ring-blue-500",
+                                        'placeholder:text-gray-400',
+                                        loginEmailError && 'border-red-500 dark:border-red-400'
+                                    )}
+                                    placeholder="Enter your email"
+                                    aria-invalid={!!loginEmailError}
+                                />
+                                {loginEmailError && (
+                                    <p className="mt-1 text-sm text-red-500 dark:text-red-400">{loginEmailError}</p>
+                                )}
+                            </div>
+                            <div className="mb-6">
+                                <label
+                                    htmlFor="login-password"
+                                    className={cn(
+                                        "block text-sm font-medium mb-1",
+                                        colors.label
+                                    )}
+                                >
+                                    Password
+                                </label>
+                                <input
+                                    type="password"
+                                    id="login-password"
+                                    value={loginPassword}
+                                    onChange={(e) => {
+                                        setLoginPassword(e.target.value);
+                                        if (!e.target.value) {
+                                            setLoginPasswordError('Please enter your password');
+                                        } else {
+                                            setLoginPasswordError('');
+                                        }
+                                    }}
+                                    className={cn(
+                                        "w-full px-4 py-2 rounded-xl text-lg",
+                                        colors.inputBg,
+                                        colors.inputText,
+                                        colors.inputBorder,
+                                        "focus:outline-none focus:ring-2 focus:ring-opacity-50",
+                                        isDarkMode ? "focus:ring-purple-500" : "focus:ring-blue-500",
+                                        'placeholder:text-gray-400',
+                                        loginPasswordError && 'border-red-500 dark:border-red-400'
+                                    )}
+                                    placeholder="Enter your password"
+                                    aria-invalid={!!loginPasswordError}
+                                />
+                                {loginPasswordError && (
+                                    <p className="mt-1 text-sm text-red-500 dark:text-red-400">{loginPasswordError}</p>
+                                )}
+                            </div>
+                            <Button
+                                variant="default"
+                                size="lg"
+                                className={cn(
+                                    colors.button,
+                                    "w-full py-3 rounded-full text-xl flex items-center justify-center gap-3",
+                                    "shadow-lg hover:shadow-xl transition-all duration-300"
+                                )}
+                                onClick={handleLogin}
+                            >
+                                <Lock className="w-6 h-6" />
+                                Log In
+                            </Button>
+                            <Button
+                                variant="outline"
+                                size="lg"
+                                className={cn(
+                                    "w-full py-3 rounded-full text-xl flex items-center justify-center gap-3 mt-4",
+                                    "border-gray-300 dark:border-gray-700",
+                                    colors.headerText,
+                                    isDarkMode
+                                        ? "dark:hover:bg-gray-700 dark:text-white dark:border-gray-700"
+                                        : ""
+                                )}
+                                onClick={handleBackToMain}
+                            >
+                                ← Back to Main
+                            </Button>
+                        </div>
+                    </div>
+
+                ) : (
+                    // Main Page Content
+                    <>
+                        <div className="text-center">
+                            <h2
+                                className={cn(
+                                    `text-4xl sm:text-5xl lg:text-6xl font-extrabold ${colors.title}  tracking-tight mb-6 flex items-center justify-center gap-3`
+                                )}
+                            >
+                                <Star className={`w-12 h-12 ${colors.accentColor}`} />
+                                Unlock the Joy of Reading
+                                <Star className={`w-12 h-12 ${colors.accentColor}`} />
+                            </h2>
+                            <p className={cn(
+                                `text-lg sm:text-xl ${colors.description}  max-w-3xl mx-auto mb-10`
+                            )}>
+                                The fun, interactive way for children to learn phonics and develop
+                                essential reading skills.
+                            </p>
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto">
+                                <input
+                                    type="email"
+                                    placeholder="Enter your email"
+                                    value={email}
+                                    onChange={handleEmailChange}
+                                    className={cn(
+                                        "w-full sm:w-auto px-6 py-3 rounded-xl text-lg",
+                                        colors.inputBg,
+                                        colors.inputText,
+                                        colors.inputBorder,
+                                        "focus:outline-none focus:ring-2 focus:ring-opacity-50",
+                                        isDarkMode ? "focus:ring-purple-500" : "focus:ring-blue-500",
+                                        'placeholder:text-gray-400',
+                                        emailError && 'border-red-500 dark:border-red-400'
+                                    )}
+                                    aria-invalid={!!emailError}
+                                />
+                                <Button
+                                    variant="default"
+                                    size="lg"
+                                    onClick={handleGetStarted}
+                                    className={cn(
+                                        colors.button,
+                                        "shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3 rounded-xl text-xl flex items-center gap-3",
+                                        "flex-shrink-0"
+                                    )}
+                                    disabled={!!emailError}
+                                >
+                                    <Heart className="w-6 h-6" />
+                                    Get Started
+                                </Button>
+                            </div>
+                            {emailError && (
+                                <p className="mt-2 text-sm text-red-500 dark:text-red-400">{emailError}</p>
+                            )}
+
+                        </div>
+
+                        {/* Highlights Section */}
+                        <motion.div
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="visible"
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 max-w-7xl mx-auto my-20"
+                        >
+                            {highlights.map((highlight, index) => {
+                                const Icon = highlight.icon;
+                                return (
+                                    <motion.div
+                                        key={index}
+                                        variants={itemVariants}
+                                        className={cn(
+                                            `${colors.cardBg} rounded-xl p-8 ${colors.shadow} transition-all duration-300`, // Removed 2xl rounding
+                                            "hover:scale-[1.03] border border-gray-200 dark:border-gray-700",
+                                            "flex flex-col items-start justify-start text-left"
+                                        )}
+                                    >
+                                        <div
+                                            className={cn(
+                                                `w-16 h-16 mb-6 ${colors.featureIcon} transition-transform duration-300`,
+                                                "group-hover:scale-110 rounded-xl flex items-center justify-center", // Removed 2xl rounding
+                                                isDarkMode ? "bg-gray-700/50" : "bg-white/80",
+                                            )}
+                                        >
+                                            <Icon className="w-8 h-8" />
+                                        </div>
+                                        <h3
+                                            className={cn(
+                                                `text-2xl font-semibold ${colors.title}  mb-4`
+                                            )}
+                                        >
+                                            {highlight.title}
+                                        </h3>
+                                        <p className={cn(colors.description, "text-base")}>
+                                            {highlight.description}
+                                        </p>
+                                    </motion.div>
+                                );
+                            })}
+                        </motion.div>
+
+                        {/* Feature Showcase (Full-Page with Pro Option) */}
+                        <div className="mt-12 space-y-2
+
+
+
+
+
+                          {
+                                title: "2. Description of Service",
+                                content:
+                                    "Phonics Playground provides an interactive educational platform designed to help users learn phonics. The site may include various features, such as lessons, games, and progress tracking.",
+                            },
+                            {
+                                title: "3. User Accounts",
+                                content: [
+                                    '<strong class="highlight">Eligibility:</strong> You must be of sufficient legal age to use the service in your jurisdiction of residence.',
+                                    '<strong class="highlight">Account Creation:</strong> Some features may require you to create an account. You agree to provide accurate and complete information when creating your account.',
+                                    '<strong class="highlight">Account Security:</strong> You are responsible for maintaining the confidentiality of your account credentials and are liable for all activities that occur under your account.',
+                                    '<strong class="highlight">Account Termination:</strong> We reserve the right to suspend or terminate your account at any time for violations of these Terms or for any other reason, without notice.',
+                                ],
+                            },
+                            {
+                                title: "4. Use of Service",
+                                content: [
+                                    '<strong class="highlight">Permitted Use:</strong> You may use the service for personal, non-commercial, and educational purposes only.',
+                                    `<strong class="highlight">Prohibited Conduct:</strong> You agree not to:
+                                <ul class="tos-sublist">
+                                  <li>Use the service for any illegal purpose.</li>
+                                  <li>Transmit any harmful or malicious code.</li>
+                                  <li>Interfere with the operation of the service.</li>
+                                  <li>Attempt to gain unauthorized access to any part of the service.</li>
+                                  <li>Use any automated system or software to extract data from the service.</li>
+                                </ul>`,
+                                ],
+                            },
+                            {
+                                title: "5. Intellectual Property",
+                                content: [
+                                    '<strong class="highlight">Ownership:</strong> All content and materials on Phonics Playground are owned by Harry Skerritt or its licensors and are protected by copyright.',
+                                    '<strong class="highlight">Limited License:</strong> We grant you a limited, non-exclusive license to use the content for personal, non-commercial educational purposes.',
+                                    '<strong class="highlight">Restrictions:</strong> You may not modify, reproduce, or redistribute the content unless permitted.',
+                                ],
+                            },
+                            {
+                                title: "6. Disclaimer of Warranties",
+                                content:
+                                    'The service is provided "as is" without warranties of any kind. We do not warrant uninterrupted or error-free operation.',
+                            },
+                            {
+                                title: "7. Limitation of Liability",
+                                content:
+                                    "To the fullest extent permitted, Harry Skerritt shall not be liable for any indirect, incidental, special, or consequential damages.",
+                            },
+                            {
+                                title: "8. Indemnification",
+                                content:
+                                    "You agree to indemnify and hold harmless Harry Skerritt and its affiliates against any claims resulting from your use of the service.",
+                            },
+                            {
+                                title: "9. Changes to Terms",
+                                content:
+                                    "We reserve the right to modify these Terms. Continued use of the service indicates your acceptance of changes.",
+                            },
+                        ];
